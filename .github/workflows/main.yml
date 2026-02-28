@@ -1,4 +1,4 @@
-name: CI Test
+name: Test
 
 on:
   push:
@@ -10,7 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Install dependencies
+      - name: Install Tailscale
         run: curl -fsSL https://tailscale.com/install.sh | sh
+
+      - name: Connect to Tailscale
+        run: sudo tailscale up --authkey=${{ secrets.AUTH }}
+
+      - name: Check Status
+        run: tailscale status
         
         

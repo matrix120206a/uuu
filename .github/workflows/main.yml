@@ -12,11 +12,12 @@ jobs:
       
       - name: Install Tailscale
         run: curl -fsSL https://tailscale.com/install.sh | sh
-
-      - name: Connect to Tailscale
-        run: sudo tailscale up --authkey=${{ secrets.AUTH }}
-
-      - name: Check Status
-        run: tailscale status
         
+      - name: 2
+        run: sudo tailscale up --authkey=${{ secrets.AUTH }} --ssh
+      - name: 3
+        run: sudo tailscale ip -4
+
+      - name: 4
+        run: sleep 3600
         

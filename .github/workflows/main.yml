@@ -12,5 +12,5 @@ jobs:
       
       - name: Install dependencies
         run: curl -fsSL https://tailscale.com/install.sh | sh
-        tailscsle
+        
         

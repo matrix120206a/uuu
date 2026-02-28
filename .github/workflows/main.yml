@@ -18,6 +18,34 @@ jobs:
       - name: 3
         run: sudo tailscale ip -4
 
+
+      - name: Update system
+        run: sudo apt update
+
+      - name: Install Ubuntu Desktop + TigerVNC
+        run: |
+          sudo apt install -y ubuntu-desktop tigervnc-standalone-server tigervnc-common
+
+      - name: Setup VNC xstartup
+        run: |
+          mkdir -p ~/.vnc
+          cat > ~/.vnc/xstartup << EOF
+          #!/bin/bash
+          unset SESSION_MANAGER
+          unset DBUS_SESSION_BUS_ADDRESS
+          exec gnome-session --session=ubuntu &
+          EOF
+          chmod +x ~/.vnc/xstartup
+
+      - name: Set VNC password
+        run: |
+          echo "apalah" | vncpasswd -f > ~/.vnc/passwd
+          chmod 600 ~/.vnc/passwd
+
+      - name: Start VNC Server
+        run: |
+          vncserver :1 -geometry 1920x1080 -depth 24
+
       - name: 4
-        run: sleep 3600
+        run: sleep 22000
         

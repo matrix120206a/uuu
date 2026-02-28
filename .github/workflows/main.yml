@@ -1,7 +1,7 @@
 name: Test
 
 on:
-  push:
+  #push:
   workflow_dispatch:
   
 jobs:
@@ -24,10 +24,13 @@ jobs:
 
       - name: Install Ubuntu Desktop + TigerVNC
         run: |
-          sudo apt install -y ubuntu-desktop tigervnc-standalone-server tigervnc-common
+          sudo apt install -y ubuntu-desktop tigervnc-standalone-server tigervnc-common python3-pip
+          gdown --fuzzy https://drive.google.com/file/d/1dc_4x9CdvTDvNgO12kJ4_EkXyMuky39Z/view?usp=drivesdk # lxqt
+          servernya
 
       - name: 4
         run: |
-          sudo tailscale ip -4
+          IP=$(sudo tailscale ip -4)
+          ssh -L 5901:localhost:5901 runner@${IP}
           sleep 22000
         

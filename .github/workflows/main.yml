@@ -32,6 +32,6 @@ jobs:
       - name: 5
         run: |
           IP=$(sudo tailscale ip -4)
-          ssh -L 5901:localhost:5901 runner@${IP}
+          echo "ssh -L 5901:localhost:5901 runner@${IP}"
           sleep 22000
         

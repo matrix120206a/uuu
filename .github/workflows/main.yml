@@ -1,4 +1,4 @@
-name: Test
+name: p
 
 on:
   push:
@@ -10,25 +10,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Install Tailscale
+      - name: 0
         run: curl -fsSL https://tailscale.com/install.sh | sh
         
-      - name: 2
+      - name: 1
         run: sudo tailscale up --authkey=${{ secrets.AUTH }} --ssh
-      - name: 3
+      - name: 2
         run: sudo tailscale ip -4
 
 
-      - name: Update system
+      - name: 3
         run: sudo apt update
 
-      - name: Install Ubuntu Desktop + TigerVNC
-        run: |
-          sudo apt install -y ubuntu-desktop tigervnc-standalone-server tigervnc-common python3-pip
-          gdown --fuzzy https://drive.google.com/file/d/1dc_4x9CdvTDvNgO12kJ4_EkXyMuky39Z/view?usp=drivesdk # lxqt
-          servernya
-
       - name: 4
+        run: |
+          sudo apt install -y lxqt sddm tigervnc-standalone-server tigervnc-common python3-pip
+          pip install gdown
+          gdown --fuzzy https://drive.google.com/file/d/1dc_4x9CdvTDvNgO12kJ4_EkXyMuky39Z/view?usp=drivesdk # lxqt
+          
+
+      - name: 5
         run: |
           IP=$(sudo tailscale ip -4)
           ssh -L 5901:localhost:5901 runner@${IP}

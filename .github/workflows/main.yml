@@ -26,7 +26,7 @@ jobs:
         run: |
           sudo apt install -y lxqt sddm tigervnc-standalone-server tigervnc-common python3-pip
           pip install gdown
-          gdown --fuzzy https://drive.google.com/file/d/1dc_4x9CdvTDvNgO12kJ4_EkXyMuky39Z/view?usp=drivesdk # lxqt
+          gdown --fuzzy "https://drive.google.com/file/d/1dc_4x9CdvTDvNgO12kJ4_EkXyMuky39Z/view?usp=drivesdk" # lxqt
           
 
       - name: 5

@@ -25,7 +25,31 @@ jobs:
       - name: 4
         run: |
           sudo apt install -y lxqt sddm tigervnc-standalone-server tigervnc-common python3-pip wget
+
+          cat > ~/.vnc/xstartup <<'EOL'
+          #!/bin/bash
+
+          mkdir -p ~/.vnc
           
+          cat > ~/.vnc/xstartup <<'EOL'
+          #!/bin/bash
+          unset SESSION_MANAGER
+          unset DBUS_SESSION_BUS_ADDRESS
+          exec startlxqt
+          EOL
+          
+          chmod +x ~/.vnc/xstartup
+          
+          echo "=== Set password VNC ==="
+          echo "apalah" | vncpasswd -f > ~/.vnc/passwd
+          chmod 600 ~/.vnc/passwd
+          
+          echo "=== Kill old session ==="
+          vncserver -kill :1 2>/dev/null || true
+          
+          echo "=== Start VNC server ==="
+          vncserver :1 -geometry 1280x720 -depth 24 -SecurityTypes None
+          EOF
           
           #wget "https://drive.google.com/uc?export=download&id=1dc_4x9CdvTDvNgO12kJ4_EkXyMuky39Z" -O lxqt.sh
 

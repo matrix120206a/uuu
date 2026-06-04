@@ -24,7 +24,7 @@ jobs:
 
       - name: 4
         run: |
-          #sudo apt install -y lxqt sddm tigervnc-standalone-server tigervnc-common python3-pip wget
+          sudo apt install -y lxqt sddm tigervnc-standalone-server tigervnc-common python3-pip wget
           cat > lxqt.sh <<'EOF'
       
           
